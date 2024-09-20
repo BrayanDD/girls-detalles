@@ -59,7 +59,8 @@ if (isset($_GET['id_categoria'])) {
                                 <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal"
                                     data-name="<?= htmlspecialchars($product['name']) ?>"
                                     data-price="<?= htmlspecialchars($product['price']) ?>"
-                                    data-description="<?= htmlspecialchars($product['description']) ?>">
+                                    data-description="<?= htmlspecialchars($product['description']) ?>"
+                                    data-photo="../img/<?= htmlspecialchars($product['photo']) ?>">
                                     Info
                                 </button>
                                 <a href="#" class="btn ms-2">Añadir</a>
@@ -97,53 +98,58 @@ if (isset($_GET['id_categoria'])) {
 
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Detalles del producto</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content ">
+            <div class="d-flex">
+              <img id="product-photo" src="" alt="Imagen del producto" class="img-fluid" >
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>  
+              <div class="info-product">
+                  <h1 id="product-name"> </h1>
+                  <p><strong>Precio:</strong> <span id="product-price"></span></p>
+                  <p><strong>Descripción:</strong> <span id="product-description"></span></p>
+              </div>
+              
             </div>
-            <div class="modal-body">
-                <p><strong>Nombre:</strong> <span id="product-name"></span></p>
-                <p><strong>Precio:</strong> <span id="product-price"></span></p>
-                <p><strong>Descripción:</strong> <span id="product-description"></span></p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            </div>
+            
         </div>
     </div>
 </div>
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        var exampleModal = document.getElementById('exampleModal');
+    var exampleModal = document.getElementById('exampleModal');
 
-        exampleModal.addEventListener('show.bs.modal', function(event) {
-            // Botón que activó el modal
-            var button = event.relatedTarget;
+    exampleModal.addEventListener('show.bs.modal', function(event) {
+        // Botón que activó el modal
+        var button = event.relatedTarget;
 
-            // Extraer la información de los atributos data-*
-            var productName = button.getAttribute('data-name');
-            var productPrice = button.getAttribute('data-price');
-            var productDescription = button.getAttribute('data-description');
+        // Extraer la información de los atributos data-*
+        var productName = button.getAttribute('data-name');
+        var productPrice = button.getAttribute('data-price');
+        var productDescription = button.getAttribute('data-description');
+        var productPhoto = button.getAttribute('data-photo');  // Obtener la URL de la imagen
 
-            // Actualizar el contenido del modal
-            var modalTitle = exampleModal.querySelector('.modal-title');
-            var modalBodyName = exampleModal.querySelector('#product-name');
-            var modalBodyPrice = exampleModal.querySelector('#product-price');
-            var modalBodyDescription = exampleModal.querySelector('#product-description');
+        // Actualizar el contenido del modal
+        var modalBodyName = exampleModal.querySelector('#product-name');
+        var modalBodyPrice = exampleModal.querySelector('#product-price');
+        var modalBodyDescription = exampleModal.querySelector('#product-description');
+        var modalProductPhoto = exampleModal.querySelector('#product-photo');  // Seleccionar la imagen
 
-            modalTitle.textContent = 'Detalles del producto';
-            modalBodyName.textContent = productName;
-            modalBodyPrice.textContent = 'COP $' + productPrice;
-            modalBodyDescription.textContent = productDescription;
-        });
+        modalBodyName.textContent = productName;
+        modalBodyPrice.textContent = 'COP $' + productPrice;
+        modalBodyDescription.textContent = productDescription;
+
+        // Actualizar la imagen
+        modalProductPhoto.src = productPhoto;
     });
+});
+
 </script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../js/alert.js"></script>
+<script src="../js/modal.js"></script>
 
 </body>
 

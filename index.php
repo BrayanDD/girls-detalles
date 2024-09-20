@@ -53,7 +53,7 @@ $categorias = $sttms->fetchAll(PDO::FETCH_ASSOC);
                 <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" data-name="<?= htmlspecialchars($product['name']) ?>"
                   data-price="<?= htmlspecialchars($product['price']) ?>"
                   data-description="<?= htmlspecialchars($product['description']) ?>"
-                  data-photo="img/<?= htmlspecialchars($product['photo']) ?>">>Info</button>
+                  data-photo="img/<?= htmlspecialchars($product['photo']) ?>">Info</button>
                 <a class="btn ms-2">Añadir</a>
 
               </form>
@@ -164,6 +164,7 @@ $categorias = $sttms->fetchAll(PDO::FETCH_ASSOC);
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="js/alert.js"></script>
+<script src="js/modal.js"></script>
 </body>
 
 </html>
